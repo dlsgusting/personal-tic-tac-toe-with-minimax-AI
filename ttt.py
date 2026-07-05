@@ -1,5 +1,4 @@
 running = True
-current = -1
 board = ["?","?","?","?","?","?","?","?","?"]
 
 wins = [
@@ -110,26 +109,12 @@ def player_turn():
     pos = place()
     board[pos -1] = "O"
 
-# def turn():
-#     global current
-#     if current == 1:
-#         print("Player 1 turn")
-#     else:
-#         print("Player 2 turn")
-#     pos = place()
-
-#     if current == 1:
-#         board[pos-1] = "O"
-#     else:
-#         board[pos-1] = "X"
-
-#     current = -current
-
 while running:
     print()
     display_board()
-    result = check_win(board)
 
+    player_turn()
+    result = check_win(board)
     if result == "ai":
         print("AI wins")
         running = False
@@ -143,5 +128,17 @@ while running:
         running = False
         break
 
-    player_turn()
     ai_turn(board)
+    result = check_win(board)
+    if result == "ai":
+        print("AI wins")
+        running = False
+        break
+    elif result == "player":
+        print("Player wins")
+        running = False
+        break
+    elif result == 0:
+        print("Draw")
+        running = False
+        break
