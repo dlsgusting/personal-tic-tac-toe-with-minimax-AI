@@ -16,6 +16,9 @@ wins = [
 
 def check_win():
     global playing
+    if "?" not in board:
+        print("It's a tie!")
+        playing = False
     for win in wins:
         pos1 = win[0]
         pos2 = win[1]
@@ -74,3 +77,5 @@ while playing:
     check_win()
     turn()
 
+
+# sfe
